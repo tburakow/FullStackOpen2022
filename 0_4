@@ -7,7 +7,7 @@ sequenceDiagram
     server-->>browser: HTML document
     deactivate server
 
-    Note right of browser: The the server prompts the browser to reload the notes and 
+    Note right of browser: The the server prompts the browser to reload the notes through redirection also triggering the reload of the other elements further down in the diagram. The server also creates a new "note"-object from the req.body and req.body.note -fields and adds it to the chart "notes". 
 
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
