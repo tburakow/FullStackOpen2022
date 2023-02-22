@@ -4,7 +4,7 @@ const Display = (props) => {
   console.log(props)
   return (
   <div>
-    {props.name} {props.value}
+    {props.name} {props.value} {props.additional}
   </div>
   )
 }
@@ -17,6 +17,20 @@ const Button = (props) => {
   </button>
   )
 } 
+
+const Statistics = (props) => {
+  console.log("good, neutral and bad inputs", props.good, props.neutral, props.bad)
+  let total = props.good + props.neutral + props.bad // The total amount of feedback is formed by adding together the good neutral and bad fields.
+  let average = ((props.good * 1) + (props.bad * -1)) / total // Average value of feedback inputs
+  let positive = props.good / total * 100 //percentage of positive feedbacks of the total
+  return (
+  <div>
+    <Display name="total" value={total} />
+    <Display name="average" value={average} />
+    <Display name="positive" value={positive} additional='%' />
+  </div>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
@@ -50,6 +64,7 @@ const App = () => {
       <Display name="good" value={good} />
       <Display name="neutral" value={neutral} />
       <Display name="bad" value={bad} />
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
