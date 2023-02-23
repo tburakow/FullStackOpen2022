@@ -1,14 +1,5 @@
 import { useState } from 'react'
 
-const Display = (props) => {
-  console.log(props)
-  return (
-  <div>
-    {props.name} {props.value} {props.additional}
-  </div>
-  )
-}
-
 const Button = (props) => {
   console.log(props)
   return (
@@ -18,16 +9,55 @@ const Button = (props) => {
   )
 } 
 
+const Table = (props) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <td>good</td>
+          <td>{props.goodvalue}</td>
+        </tr>
+        <tr>
+          <td>neutral</td>
+          <td>{props.neutralvalue}</td>
+        </tr>
+        <tr>
+          <td>bad</td>
+          <td>{props.badvalue}</td>
+        </tr>
+        <tr>
+          <td>total</td>
+          <td>{props.totalvalue}</td>
+        </tr>
+        <tr>
+          <td>average</td>
+          <td>{props.averagevalue}</td>
+        </tr>
+        <tr>
+          <td>positive</td>
+          <td>{props.positivevalue} %</td>
+        </tr>
+      </thead>
+    </table>
+  )
+}
+
 const Statistics = (props) => {
   console.log("good, neutral and bad inputs", props.good, props.neutral, props.bad)
   let total = props.good + props.neutral + props.bad // The total amount of feedback is formed by adding together the good neutral and bad fields.
   let average = ((props.good * 1) + (props.bad * -1)) / total // Average value of feedback inputs
   let positive = props.good / total * 100 //percentage of positive feedbacks of the total
+  if (total === 0) {
+    return (
+      <div>
+        No feedback given.
+      </div>
+    )
+  }
   return (
   <div>
-    <Display name="total" value={total} />
-    <Display name="average" value={average} />
-    <Display name="positive" value={positive} additional='%' />
+    <Table goodvalue={props.good} neutralvalue={props.neutral} badvalue={props.bad}
+    totalvalue={total} averagevalue={average} positivevalue={positive} />
   </div>
   )
 }
@@ -61,9 +91,6 @@ const App = () => {
       <Button handleClick={setToBad(bad + 1)} text="bad" />
       <br/>
       <h2>Statistics</h2>
-      <Display name="good" value={good} />
-      <Display name="neutral" value={neutral} />
-      <Display name="bad" value={bad} />
       <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
