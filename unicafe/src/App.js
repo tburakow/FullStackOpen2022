@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+// Button component
 const Button = (props) => {
   console.log(props)
   return (
@@ -9,6 +10,7 @@ const Button = (props) => {
   )
 } 
 
+// Table component, names of first column hardcoded.
 const Table = (props) => {
   return (
     <table>
