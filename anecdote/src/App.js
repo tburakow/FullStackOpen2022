@@ -32,9 +32,13 @@ const App = () => {
 
   const [selected, setSelected] = useState(0)
 
+  const points = [0, 0, 0, 0, 0, 0, 0, 0]
+
   return (
     <div>
       {anecdotes[selected]}
+      <br/>
+      has {points[selected]} votes.
       <br/>
       <br/>
       <Button handleClick={setToSelected(getNewRandom())} text="get new anecdote" />
