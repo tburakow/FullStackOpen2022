@@ -1,9 +1,28 @@
 import { useState } from 'react'
 
-const getNewRandom = () => {
-  return Math.floor((Math.random() * 8))
+
+// Returns the index of the anecdote with the highest vote count.
+// If equal, the one with the smallest index number is returned.
+const getHighestVotes = (votes) => {
+  console.log("Points", votes)
+  var high = 0
+  var newHigh = 0 
+  var i
+  for(i=0; i < votes.length; i++){
+    if(votes[i] > votes[high]){
+      newHigh = i
+      high = newHigh
+    }
+  }
+  return (high)
 }
 
+// Gets a new random number (a new anecdote) on the range 0 - 7
+const getNewRandom = () => {
+  return Math.floor((Math.random() * 7))
+}
+
+// Handles button presses.
 const Button = (props) => {
   console.log(props)
   return (
@@ -35,15 +54,16 @@ const App = () => {
   }
 
   const setToVotes = () => {
-    const newVotes = [...votes]
-    newVotes[selected] += 1
-    console.log('New votes', newVotes)
-    setVotes(newVotes)
+    const newVotes = [...votes] // Get the new votes from old votes
+    newVotes[selected] += 1 // Add to the votes of the anecdote pointed to by selected
+    console.log('New votes', newVotes) // Log the new votes
+    setVotes(newVotes) // Set the votes as newVotes
   }
 
 
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       {anecdotes[selected]}
       <br/>
       has {votes[selected]} votes.
@@ -51,6 +71,10 @@ const App = () => {
       <br/>
       <Button handleClick={setToSelected(getNewRandom())} text="get new anecdote" />
       <Button handleClick={() => setToVotes()} text="Vote for this anecdote" />
+      <h2>Anecdote with the most votes</h2>
+      {anecdotes[getHighestVotes(votes)]}
+      <br/>
+      {votes[getHighestVotes(votes)]}
     </div>
   )
 }
