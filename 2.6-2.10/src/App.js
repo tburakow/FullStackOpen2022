@@ -24,10 +24,14 @@ const App = () => {
     const nameObject = {
       name: newName,
     }
-
+    if (persons.find(single => single.name === newName) === undefined) {
     setPersons(persons.concat(nameObject))
     console.log(persons)
     setNewName(' ')
+    }
+    else {
+      alert(`${newName} is already in the phonebook`)
+    }
     }
   
 
