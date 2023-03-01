@@ -1,20 +1,7 @@
 import { useState } from 'react'
-
-// This component displayes the information of a single person.
-const DisplayPerson = ({ name, number }) => {
-  console.log('person to be displayed (also key):', name)
-  return (
-    <p>{name} {number}</p>
-  )
-}
-
-const FilterPerson = ({ name, number, filter }) => {
-  console.log('Filter to check against', filter)
-  console.log('name to check:', name)
-  if (name.includes(filter) || filter === '') {
-    return(<DisplayPerson name={name} number={number}/>)
-  }
-}
+import Filter from './components/Filter'
+import NewPerson from './components/NewPerson'
+import FilterForm from './components/FilterForm'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -83,7 +70,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map(person =>
-        <FilterPerson name={person.name} number={person.number} filter={newFilter} key={person.name} />
+        <Filter name={person.name} number={person.number} filter={newFilter} key={person.name} />
       )}
     </div>
   )
