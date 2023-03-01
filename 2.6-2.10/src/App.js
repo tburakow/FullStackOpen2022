@@ -8,12 +8,24 @@ const DisplayPerson = ({ name, number }) => {
   )
 }
 
+const FilterPerson = ({ name, number, filter }) => {
+  console.log('Filter to check against', filter)
+  console.log('name to check:', name)
+  if (name.includes(filter) || filter === '') {
+    return(<DisplayPerson name={name} number={number}/>)
+  }
+}
+
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-1234987' }
+    { name: 'Arto Hellas', number: '040-1234987' },
+    { name: 'Torspo Van Halen', number: '343-3434567'},
+    { name: 'Elvis Mayweather', number: '903-5678906'},
+    { name: 'Plato Papadokakis', number: '903-5431617'},
   ]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+  const [newFilter, setFilter] = useState('')
 
 
   const handleNameChange = (event) => {
@@ -24,6 +36,11 @@ const App = () => {
   const handleNumberChange = (event) => {
     console.log(event.target.value)
     setNewNumber(event.target.value)
+  }
+
+  const handleFilterChange = (event) => {
+    console.log(event.target.value)
+    setFilter(event.target.value)
   }
 
   const addName = (event) => {
@@ -41,11 +58,18 @@ const App = () => {
     else {
       alert(`${newName} is already in the phonebook`)
     }
-    }
+  }
+  
 
   return (
     <div>
       <h2>Phonebook</h2>
+      <form>
+        <div>
+          filter entries with: <input value={newFilter} onChange={handleFilterChange} />
+        </div>
+      </form>
+      <h2>Add new entry</h2>
       <form onSubmit={addName}>
         <div>
           name: <input value={newName} onChange={handleNameChange} />
@@ -59,7 +83,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map(person =>
-        <DisplayPerson name={person.name} number={person.number} key={person.name} />
+        <FilterPerson name={person.name} number={person.number} filter={newFilter} key={person.name} />
       )}
     </div>
   )
