@@ -51,21 +51,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-        <div>
-          <FilterForm value={newFilter} handleFilterChange={handleFilterChange} />
-        </div>
+      <FilterForm value={newFilter} handleFilterChange={handleFilterChange} />
       <h2>Add new entry</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <NewPerson name={newName} handleNameChange={handleNameChange} number={newNumber} handleNumberChange={handleNumberChange} addName={addName} />
       <h2>Numbers</h2>
       {persons.map(person =>
         <Filter name={person.name} number={person.number} filter={newFilter} key={person.name} />
