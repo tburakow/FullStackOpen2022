@@ -1,12 +1,12 @@
-const Filter = ({ newFilter }) => {
-console.log('new filter is', newFilter)
+const FilterForm = ({ value, handleFilterChange }) => {
+console.log('new filter is', value)
 return (  
     <form>
         <div>
-            filter entries with: <input value={newFilter} onChange={handleFilterChange} />
+            filter entries with: <input value={value} onChange={handleFilterChange} />
         </div>
     </form>
 )
 }
 
-export default Filter
+export default FilterForm

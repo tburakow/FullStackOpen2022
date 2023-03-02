@@ -51,11 +51,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
         <div>
-          filter entries with: <input value={newFilter} onChange={handleFilterChange} />
+          <FilterForm value={newFilter} handleFilterChange={handleFilterChange} />
         </div>
-      </form>
       <h2>Add new entry</h2>
       <form onSubmit={addName}>
         <div>
