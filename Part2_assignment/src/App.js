@@ -1,19 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import NewPerson from './components/NewPerson'
 import FilterForm from './components/FilterForm'
+import personsService from './services/persons'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-1234987' },
-    { name: 'Torspo Van Halen', number: '343-3434567'},
-    { name: 'Elvis Mayweather', number: '903-5678906'},
-    { name: 'Plato Papadokakis', number: '903-5431617'},
-  ]) 
+  const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setFilter] = useState('')
 
+  useEffect(() => {
+    personsService      
+      .getAll()      
+        .then(response => {        
+          setPersons(response)
+        }) 
+  }, [])
 
   const handleNameChange = (event) => {
     console.log(event.target.value)
@@ -37,7 +40,11 @@ const App = () => {
       number: newNumber,
     }
     if (persons.find(single => single.name === newName) === undefined) {
-    setPersons(persons.concat(nameObject))
+      personsService      
+        .create(nameObject)      
+          .then(response => {        
+            setPersons(persons.concat(response))            
+          })
     console.log(persons)
     setNewName('')
     setNewNumber('')
