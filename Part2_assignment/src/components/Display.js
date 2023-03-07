@@ -1,7 +1,9 @@
-const Display = ({ name, number }) => {
+import DeleteButton from './Delete'
+
+const Display = ({ name, number, id, set}) => {
     console.log('person to be displayed (also key):', name)
     return (
-      <p>{name} {number}</p>
+      <p> {name}, {number}, <DeleteButton id={id} set={set}/></p>
     )
   }
 

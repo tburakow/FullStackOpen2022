@@ -63,7 +63,7 @@ const App = () => {
       <NewPerson name={newName} handleNameChange={handleNameChange} number={newNumber} handleNumberChange={handleNumberChange} addName={addName} />
       <h2>Numbers</h2>
       {persons.map(person =>
-        <Filter name={person.name} number={person.number} filter={newFilter} key={person.name} />
+        <Filter name={person.name} number={person.number} filter={newFilter} id={person.id} key={person.name} set={setPersons}/>
       )}
     </div>
   )
