@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import NewPerson from './components/NewPerson'
 import FilterForm from './components/FilterForm'
+import handleChange from './components/handleChange'
 import personsService from './services/persons'
 
 const App = () => {
@@ -39,20 +40,23 @@ const App = () => {
       name: newName,
       number: newNumber,
     }
-    if (persons.find(single => single.name === newName) === undefined) {
-      personsService      
-        .create(nameObject)      
-          .then(response => {        
-            setPersons(persons.concat(response))            
-          })
-    console.log(persons)
-    setNewName('')
-    setNewNumber('')
+    const id = (persons.find(single => single.name === newName))
+    if (persons.find(single => single.name === newName)) {
+      if (window.confirm("Name already exists, do you wish to change the associated number?")) {
+        handleChange(id, newNumber, setPersons)
+      }
+      console.log(persons)
+      setNewName('')
+      setNewNumber('')
     }
     else {
-      alert(`${newName} is already in the phonebook`)
+      personsService      
+      .create(nameObject)      
+        .then(response => {        
+          setPersons(persons.concat(response))            
+        })
     }
-  }
+}
   
 
   return (

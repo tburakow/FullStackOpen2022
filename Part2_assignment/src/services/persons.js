@@ -17,8 +17,16 @@ const DeleteEntry = (id) => {
   return request.then(response => response)
 }
 
+const ChangeEntry = ( id, newNumber ) => {
+  console.log('entry being changed (id):', id)
+  console.log('new number for entry:', newNumber)
+  const request = axios.put(`${baseUrl}${id.id}`, {name: id.name, number: newNumber})
+  return request.then(response => response.data)
+}
+
 export default { 
   getAll: getAll, 
   create: create,
-  DeleteEntry: DeleteEntry
+  DeleteEntry: DeleteEntry,
+  ChangeEntry: ChangeEntry
 }
