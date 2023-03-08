@@ -13,27 +13,17 @@
     {
       "id": 3,
       "content": "GET and POST are the most important methods of HTTP protocol",
-      "important": false
+      "important": true
     },
     {
       "content": "Torspo",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
       "content": "Torspo 67",
       "important": false,
-      "id": 5
-    },
-    {
-      "content": "Torspo 67",
-      "important": true,
       "id": 6
-    },
-    {
-      "content": "Torspo 67457",
-      "important": false,
-      "id": 7
     },
     {
       "content": "Torspodelatuonika",
