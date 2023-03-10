@@ -4,12 +4,14 @@ import NewPerson from './components/NewPerson'
 import FilterForm from './components/FilterForm'
 import handleChange from './components/handleChange'
 import personsService from './services/persons'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setFilter] = useState('')
+  const [outputMessage, setMessage] = useState('')
 
   useEffect(() => {
     personsService      
@@ -44,6 +46,12 @@ const App = () => {
     if (persons.find(single => single.name === newName)) {
       if (window.confirm("Name already exists, do you wish to change the associated number?")) {
         handleChange(id, newNumber, setPersons)
+        setMessage(
+          `Changed number for '${newName}'.`
+        )
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
       }
       console.log(persons)
       setNewName('')
@@ -53,7 +61,13 @@ const App = () => {
       personsService      
       .create(nameObject)      
         .then(response => {        
-          setPersons(persons.concat(response))            
+          setPersons(persons.concat(response))
+          setMessage(
+            `Added '${newName}' to phonebook.`
+          )
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)            
         })
     }
 }
@@ -64,6 +78,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <FilterForm value={newFilter} handleFilterChange={handleFilterChange} />
       <h2>Add new entry</h2>
+      <Notification message={outputMessage} />
       <NewPerson name={newName} handleNameChange={handleNameChange} number={newNumber} handleNumberChange={handleNumberChange} addName={addName} />
       <h2>Numbers</h2>
       {persons.map(person =>
