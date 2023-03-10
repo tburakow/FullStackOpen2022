@@ -1,21 +1,6 @@
 {
   "persons": [
     {
-      "name": "Ninjaman Samurai-hernandez",
-      "number": "12345",
-      "id": 2
-    },
-    {
-      "name": "Urpo",
-      "number": "56789",
-      "id": 3
-    },
-    {
-      "name": "X",
-      "number": "5678",
-      "id": 4
-    },
-    {
       "name": "Torspo Van Halen",
       "number": "040+panama",
       "id": 5
@@ -24,6 +9,21 @@
       "name": "kalikula",
       "number": "234",
       "id": 6
+    },
+    {
+      "name": "Elvis Costello",
+      "number": "23455",
+      "id": 7
+    },
+    {
+      "name": "Elvis",
+      "number": "Bungalow",
+      "id": 8
+    },
+    {
+      "name": "Killer",
+      "number": "12245",
+      "id": 9
     }
   ]
 }
