@@ -4,7 +4,7 @@ import Notification from './components/Notification'
 import noteService from './services/notes'
 
 const App = () => {
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState(null)
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
@@ -17,6 +17,9 @@ const App = () => {
       })
   }, [])
 
+  if (!notes) {
+    return null
+  }
   const addNote = (event) => {
     event.preventDefault()
     const noteObject = {
@@ -58,7 +61,7 @@ const App = () => {
           setNotes(notes.filter(n => n.id !== id))
         })
     }
-
+  
   return (
     <div>
       <h1>Notes</h1>
